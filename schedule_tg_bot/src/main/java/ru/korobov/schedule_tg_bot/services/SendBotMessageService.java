@@ -1,4 +1,4 @@
-package ru.korobov.schedule_tg_bot.service;
+package ru.korobov.schedule_tg_bot.services;
 
 public interface SendBotMessageService {
 
