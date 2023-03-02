@@ -1,3 +1,14 @@
 bot:
-  username : ${bot_username}
-  token : ${bot_token}
+  username: ${bot_username}
+  token: ${bot_token}
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: ${datasource_username}
+    password: ${datasource_password}
+    url: jdbc:postgresql://localhost:5432/schedule_tg_bot
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true

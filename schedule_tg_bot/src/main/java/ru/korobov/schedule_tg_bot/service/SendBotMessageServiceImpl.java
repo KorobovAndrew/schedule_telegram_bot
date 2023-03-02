@@ -1,11 +1,11 @@
 package ru.korobov.schedule_tg_bot.service;
 
+import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import ru.korobov.schedule_tg_bot.bot.Bot;
 
-//почему без аннотации service все работает???
-
+@Service
 public class SendBotMessageServiceImpl implements SendBotMessageService {
 
     private final Bot bot;

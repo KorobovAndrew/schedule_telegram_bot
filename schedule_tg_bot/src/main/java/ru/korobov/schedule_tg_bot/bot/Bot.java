@@ -7,6 +7,7 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.korobov.schedule_tg_bot.commands.CommandContainer;
 import ru.korobov.schedule_tg_bot.service.SendBotMessageServiceImpl;
+
 import static ru.korobov.schedule_tg_bot.commands.CommandName.NOCOMMAND;
 
 @Component
@@ -16,14 +17,16 @@ public class Bot extends TelegramLongPollingBot {
 
     private final CommandContainer commandContainer;
 
+
     @Value("${bot.username}")
     private String username;
 
     @Value("${bot.token}")
     private String token;
 
+
     public Bot() {
-        this.commandContainer = new CommandContainer(new SendBotMessageServiceImpl(this)); //ниче не понял
+        this.commandContainer = new CommandContainer(new SendBotMessageServiceImpl(this));
     }
 
     @Override
@@ -33,6 +36,7 @@ public class Bot extends TelegramLongPollingBot {
 
             if(message.startsWith(COMMAND_PREFIX)) {
                 String commandIdentifier = message.split(" ")[0].toLowerCase();
+
 
                 commandContainer.retrieveCommand(commandIdentifier).execute(update);
             } else {
