@@ -1,22 +1,40 @@
 package ru.korobov.schedule_tg_bot.commands;
 
-import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import ru.korobov.schedule_tg_bot.service.SendBotMessageService;
+import ru.korobov.schedule_tg_bot.repositories.entity.TelegramUser;
+import ru.korobov.schedule_tg_bot.services.SendBotMessageService;
+import ru.korobov.schedule_tg_bot.services.TelegramUserService;
 
 public class StartCommand implements Command {
 
     private final SendBotMessageService sendBotMessageService;
+    private final TelegramUserService telegramUserService;
 
     private static final String START_MESSAGE =
             "Привет. Я бот, который пока еще ничего не умеет, но обязательно чему-то научится.";
 
-    public StartCommand(SendBotMessageService sendBotMessageService) {
+    public StartCommand(SendBotMessageService sendBotMessageService, TelegramUserService telegramUserService) {
         this.sendBotMessageService = sendBotMessageService;
+        this.telegramUserService = telegramUserService;
     }
 
     @Override
     public void execute(Update update) {
+        String chatId = update.getMessage().getChatId().toString();
+
+        telegramUserService.findUserByChatId(chatId).ifPresentOrElse(
+                user -> {
+                    user.setActive(true);
+                    telegramUserService.save(user);
+                },
+                () -> {
+                    telegramUserService.save(TelegramUser.builder()
+                            .chatId(chatId)
+                            .active(true)
+                            .build());
+                }
+        );
+
         sendBotMessageService.sendMessage(update.getMessage().getChatId().toString(), START_MESSAGE);
     }
 

@@ -6,7 +6,8 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.korobov.schedule_tg_bot.commands.CommandContainer;
-import ru.korobov.schedule_tg_bot.service.SendBotMessageServiceImpl;
+import ru.korobov.schedule_tg_bot.services.SendBotMessageServiceImpl;
+import ru.korobov.schedule_tg_bot.services.TelegramUserService;
 
 import static ru.korobov.schedule_tg_bot.commands.CommandName.NOCOMMAND;
 
@@ -25,8 +26,8 @@ public class Bot extends TelegramLongPollingBot {
     private String token;
 
 
-    public Bot() {
-        this.commandContainer = new CommandContainer(new SendBotMessageServiceImpl(this));
+    public Bot(TelegramUserService telegramUserService) {
+        this.commandContainer = new CommandContainer(new SendBotMessageServiceImpl(this), telegramUserService);
     }
 
     @Override
