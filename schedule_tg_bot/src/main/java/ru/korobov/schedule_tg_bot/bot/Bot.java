@@ -14,8 +14,8 @@ import static ru.korobov.schedule_tg_bot.commands.CommandName.NOCOMMAND;
 @Component
 public class Bot extends TelegramLongPollingBot {
 
-    public static String COMMAND_PREFIX = "/";
 
+    public static String COMMAND_PREFIX = "/";
     private final CommandContainer commandContainer;
 
 
@@ -27,7 +27,8 @@ public class Bot extends TelegramLongPollingBot {
 
 
     public Bot(TelegramUserService telegramUserService) {
-        this.commandContainer = new CommandContainer(new SendBotMessageServiceImpl(this), telegramUserService);
+        this.commandContainer = new CommandContainer(new SendBotMessageServiceImpl(this),
+                telegramUserService);
     }
 
     @Override
@@ -37,7 +38,6 @@ public class Bot extends TelegramLongPollingBot {
 
             if(message.startsWith(COMMAND_PREFIX)) {
                 String commandIdentifier = message.split(" ")[0].toLowerCase();
-
 
                 commandContainer.retrieveCommand(commandIdentifier).execute(update);
             } else {
@@ -55,4 +55,5 @@ public class Bot extends TelegramLongPollingBot {
     public String getBotToken() {
         return token;
     }
+
 }

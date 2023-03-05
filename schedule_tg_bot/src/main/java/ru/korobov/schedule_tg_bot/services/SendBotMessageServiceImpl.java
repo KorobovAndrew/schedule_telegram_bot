@@ -28,4 +28,13 @@ public class SendBotMessageServiceImpl implements SendBotMessageService {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void sendMessage(SendMessage sendMessage) {
+        try {
+            bot.execute(sendMessage);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+    }
 }
