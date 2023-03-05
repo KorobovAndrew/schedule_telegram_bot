@@ -22,4 +22,7 @@ public class TelegramUser {
 
     @Column(name = "active")
     private boolean active;
+
+    @Column(name = "user_id")
+    private Long userId;
 }

@@ -18,7 +18,8 @@ public class SendBotMessageServiceImpl implements SendBotMessageService {
     public void sendMessage(String chatId, String message) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatId);
-        sendMessage.enableHtml(true);// - зачем это???
+        sendMessage.enableHtml(true);// - устанавливаем parceMode html
+        sendMessage.disableWebPagePreview();
         sendMessage.setText(message);
 
         try {

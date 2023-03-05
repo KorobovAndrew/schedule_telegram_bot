@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import ru.korobov.schedule_tg_bot.repositories.TelegramUserRepository;
 import ru.korobov.schedule_tg_bot.repositories.entity.TelegramUser;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,4 +25,10 @@ public class TelegramUserServiceImpl implements TelegramUserService {
     public Optional<TelegramUser> findUserByChatId(String chatId) {
         return telegramUserRepository.findById(chatId);
     }
+
+    @Override
+    public List<TelegramUser> findAll() {
+        return telegramUserRepository.findAll();
+    }
+
 }

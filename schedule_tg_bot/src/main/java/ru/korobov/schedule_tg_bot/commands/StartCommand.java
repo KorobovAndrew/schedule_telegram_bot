@@ -21,6 +21,7 @@ public class StartCommand implements Command {
     @Override
     public void execute(Update update) {
         String chatId = update.getMessage().getChatId().toString();
+        Long userId = update.getMessage().getFrom().getId();
 
         telegramUserService.findUserByChatId(chatId).ifPresentOrElse(
                 user -> {
@@ -30,12 +31,30 @@ public class StartCommand implements Command {
                 () -> {
                     telegramUserService.save(TelegramUser.builder()
                             .chatId(chatId)
+                            .userId(userId)
                             .active(true)
                             .build());
                 }
         );
 
         sendBotMessageService.sendMessage(update.getMessage().getChatId().toString(), START_MESSAGE);
+
+
+//        код для добавления текстовых ссылок
+//        var builder = new StringBuilder();
+//        var users = telegramUserService.findAll();
+//        int counter = 0;
+//        for (TelegramUser telegramUser : users) {
+//            builder.append("\n<a href='tg://user?id="
+//                    + telegramUser.getUserId()
+//                    + "'>Пользователь "
+//                    + counter
+//                    + "</a>");
+//            counter++;
+//        }
+//
+//        sendBotMessageService.sendMessage(update.getMessage().getChatId().toString(), builder.toString());
+
     }
 
 }

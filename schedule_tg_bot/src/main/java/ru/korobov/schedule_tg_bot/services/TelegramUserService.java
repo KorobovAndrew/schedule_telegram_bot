@@ -9,4 +9,6 @@ public interface TelegramUserService {
     void save(TelegramUser telegramUser);
 
     Optional<TelegramUser> findUserByChatId(String chatId);
+
+    List<TelegramUser> findAll();
 }
