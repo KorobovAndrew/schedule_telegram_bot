@@ -50,11 +50,9 @@ public class Bot extends TelegramLongPollingBot {
             String callbackData = update.getCallbackQuery().getData();
             if (callbackData.equals(ChoosingStudioButtons.BUTTON_FIRST_STUDIO_NAME)) {
                 String text = "Вы выбрали первую студию";
-                //commandContainer.retrieveCommand(RESERVE.getCommandName()).executeEditMessage(update, text);
                 choosingStudioButtons.execute(update, text);
             } else if (callbackData.equals(ChoosingStudioButtons.BUTTON_NEW_HALLS_NAME)) {
                 String text = "Вы выбрали новые залы";
-                //commandContainer.retrieveCommand(RESERVE.getCommandName()).executeEditMessage(update, text);
                 choosingStudioButtons.execute(update, text);
             }
         }

@@ -50,13 +50,4 @@ public class ReserveCommand implements Command{
         sendMessage.setReplyMarkup(choosingStudioButtons.getButtons());
         sendBotMessageService.sendMessage(sendMessage);
     }
-
-    public void executeEditMessage(Update update, String text){
-//        EditMessageText editMessageText = new EditMessageText();
-//        editMessageText.setChatId(String.valueOf(update.getCallbackQuery().getMessage().getChatId()));
-//        editMessageText.setText(text);
-//        editMessageText.setMessageId(update.getCallbackQuery().getMessage().getMessageId());
-//
-//        sendBotMessageService.editMessage(editMessageText);
-    }
 }

@@ -59,12 +59,6 @@ public class StartCommand implements Command {
 //        sendBotMessageService.sendMessage(update.getMessage().getChatId().toString(), builder.toString());
 
     }
-
-    @Override
-    public void executeEditMessage(Update update, String text) {
-
-    }
-
 }
 
 
