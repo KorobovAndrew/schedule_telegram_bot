@@ -2,6 +2,7 @@ package ru.korobov.schedule_tg_bot.services;
 
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import ru.korobov.schedule_tg_bot.bot.Bot;
 
@@ -33,6 +34,15 @@ public class SendBotMessageServiceImpl implements SendBotMessageService {
     public void sendMessage(SendMessage sendMessage) {
         try {
             bot.execute(sendMessage);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void editMessage(EditMessageText editMessageText) {
+        try {
+            bot.execute(editMessageText);
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }

@@ -60,6 +60,11 @@ public class StartCommand implements Command {
 
     }
 
+    @Override
+    public void executeEditMessage(Update update, String text) {
+
+    }
+
 }
 
 
