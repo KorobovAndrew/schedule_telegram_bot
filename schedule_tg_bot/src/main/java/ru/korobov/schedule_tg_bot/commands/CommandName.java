@@ -8,6 +8,7 @@ import lombok.Getter;
 public enum CommandName {
 
     START("/start"),
+    RESERVE("/reserve"),
     HELP("/help"),
     STOP("/stop"),
     NOCOMMAND("nocommand");
